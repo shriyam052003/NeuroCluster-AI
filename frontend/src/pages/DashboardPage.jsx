@@ -54,7 +54,8 @@ export default function DashboardPage() {
     if (!sandboxText) return;
     setLoadingPredict(true);
     try {
-      const res = await axios.post('http://localhost:8000/api/v1/predict', { text: sandboxText });
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const res = await axios.post(`${API_URL}/api/v1/predict`, { text: sandboxText });
       setSandboxResult(res.data);
     } catch (e) {
       console.error(e);

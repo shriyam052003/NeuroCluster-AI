@@ -25,7 +25,8 @@ export default function AnalysisPage() {
     setError(null);
     
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/cluster', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const response = await axios.post(`${API_URL}/api/v1/cluster`, {
         texts,
         algorithm,
         num_clusters: Number(numClusters),
